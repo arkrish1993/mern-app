@@ -1,7 +1,17 @@
-import React from 'react';
+import React from "react";
+import UsersList from "../components/UsersList";
 
 const Users = () => {
-  return <h2>Users Works!</h2>;
+  const USERS = [
+    {
+      id: 1,
+      image:
+        "https://image.shutterstock.com/image-vector/cute-kawaii-girl-glasses-cartoon-600w-1769547977.jpg",
+      places: 3,
+      name: "AR",
+    },
+  ];
+  return <UsersList users={USERS} />;
 };
 
 export default Users;
