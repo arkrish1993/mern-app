@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../../shared/components/Form/Button";
 import Card from "../../shared/components/UI/Card";
 import Map from "../../shared/components/UI/Map";
+// import ReactGoogleMap from "../../shared/components/UI/ReactGoogleMap";
 import Modal from "../../shared/components/UI/Modal";
 import "./PlaceItem.css";
 
@@ -27,14 +28,15 @@ const PlaceItem = (props) => {
         footer={<Button onClick={closeModal}>CLOSE</Button>}
       >
         <div className="map-container">
-          <Map
+          {/* <ReactGoogleMap
             coordinates={props.place.coordinates}
             defaultZoom={8}
             googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100%` }} />}
             mapElement={<div style={{ height: `100%` }} />}
-          />
+          /> */}
+          <Map center={props.place.coordinates} zoom={16} />
         </div>
       </Modal>
       <li class="place-item">
