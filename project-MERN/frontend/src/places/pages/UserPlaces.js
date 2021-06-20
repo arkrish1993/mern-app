@@ -32,7 +32,7 @@ const UserPlaces = () => {
         lat: 40.7485492,
         lng: -73.9879522,
       },
-      creator: "u2",
+      creator: "u1",
     },
   ];
   return (

@@ -9,33 +9,37 @@ import {
 } from "../../shared/util/validators";
 import { useForm } from "../../hooks/form-hook";
 import "./PlaceForm.css";
+import Card from "../../shared/components/UI/Card";
 
-const DUMMY_PLACES = [
+const PLACES = [
   {
     id: "p1",
-    title: "Empire State Building",
-    description: "One of the most famous sky scrapers in the world!",
+    title: "Mitsuike Park",
+    address:
+      "2-chōme-28 Kajiyama, Tsurumi Ward, Yokohama, Kanagawa 230-0072, Japan",
+    description:
+      "A 30-hectare park featuring 3 ponds, cherry trees, a swimming pool, tennis courts & softball fields.",
     imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
-    address: "20 W 34th St, New York, NY 10001",
-    location: {
-      lat: 40.7484405,
-      lng: -73.9878584,
+      "https://images.unsplash.com/photo-1519882189396-71f93cb4714b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    coordinates: {
+      lat: 35.5286253,
+      lng: 139.6594703,
     },
     creator: "u1",
   },
   {
     id: "p2",
     title: "Empire State Building",
-    description: "One of the most famous sky scrapers in the world!",
+    address: "20 W 34th St, New York, NY 10001, United States",
+    description:
+      "A 102-story Art Deco skyscraper in Midtown Manhattan in New York City, United States.",
     imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
-    address: "20 W 34th St, New York, NY 10001",
-    location: {
-      lat: 40.7484405,
-      lng: -73.9878584,
+      "https://images.unsplash.com/photo-1555109307-f7d9da25c244?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80",
+    coordinates: {
+      lat: 40.7485492,
+      lng: -73.9879522,
     },
-    creator: "u2",
+    creator: "u1",
   },
 ];
 
@@ -57,22 +61,24 @@ const UpdatePlace = () => {
     false
   );
 
-  const identifiedPlace = DUMMY_PLACES.find((p) => p.id === placeId);
+  const identifiedPlace = PLACES.find((p) => p.id === placeId);
 
   useEffect(() => {
-    setFormData(
-      {
-        title: {
-          value: identifiedPlace.title,
-          isValid: true,
+    if (identifiedPlace) {
+      setFormData(
+        {
+          title: {
+            value: identifiedPlace.title,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true,
+          },
         },
-        description: {
-          value: identifiedPlace.description,
-          isValid: true,
-        },
-      },
-      true
-    );
+        true
+      );
+    }
     setIsLoading(false);
   }, [setFormData, identifiedPlace]);
 
@@ -84,7 +90,9 @@ const UpdatePlace = () => {
   if (!identifiedPlace) {
     return (
       <div className="center">
-        <h2>Could not find place!</h2>
+        <Card>
+          <h2>Could not find place!</h2>
+        </Card>
       </div>
     );
   }
@@ -92,7 +100,9 @@ const UpdatePlace = () => {
   if (isLoading) {
     return (
       <div className="center">
-        <h2>Loading...</h2>
+        <Card>
+          <h2>Loading...</h2>
+        </Card>
       </div>
     );
   }
