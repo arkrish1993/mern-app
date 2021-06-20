@@ -39,7 +39,7 @@ const PlaceItem = (props) => {
           <Map center={props.place.coordinates} zoom={16} />
         </div>
       </Modal>
-      <li class="place-item">
+      <li className="place-item">
         <Card>
           <div className="place-item__image">
             <img src={props.place.imageUrl} alt={props.place.title} />
