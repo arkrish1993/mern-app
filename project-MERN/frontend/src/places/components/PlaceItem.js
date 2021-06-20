@@ -7,25 +7,57 @@ import Modal from "../../shared/components/UI/Modal";
 import "./PlaceItem.css";
 
 const PlaceItem = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const openModal = () => {
-    setShowModal(true);
+  const openMap = () => {
+    setShowMap(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeMap = () => {
+    setShowMap(false);
+  };
+
+  const openDeleteConfirm = () => {
+    setShowConfirm(true);
+  };
+
+  const closeDeleteConfirm = () => {
+    setShowConfirm(false);
+  };
+
+  const deleteHandler = () => {
+    closeDeleteConfirm();
+    console.log("DELETING...");
   };
 
   return (
     <>
       <Modal
-        show={showModal}
-        onCancel={closeModal}
+        show={showConfirm}
+        onCancel={closeDeleteConfirm}
+        header="Confirm Delete"
+        footerClass="place-item__modal-actions"
+        footer={
+          <>
+            <Button inverse onClick={closeDeleteConfirm}>
+              CANCEL
+            </Button>
+            <Button danger onClick={deleteHandler}>
+              DELETE
+            </Button>
+          </>
+        }
+      >
+        <p>Are you sure you want to delete this place?</p>
+      </Modal>
+      <Modal
+        show={showMap}
+        onCancel={closeMap}
         header={props.place.address}
         contentClass="place-item__modal-content"
         footerClass="place-item__modal-actions"
-        footer={<Button onClick={closeModal}>CLOSE</Button>}
+        footer={<Button onClick={closeMap}>CLOSE</Button>}
       >
         <div className="map-container">
           {/* <ReactGoogleMap
@@ -50,11 +82,13 @@ const PlaceItem = (props) => {
             <p>{props.place.description}</p>
           </div>
           <div className="place-item__actions">
-            <Button inverse onClick={openModal}>
+            <Button inverse onClick={openMap}>
               VIEW ON MAP
             </Button>
             <Button to={`/places/${props.place.id}`}>EDIT</Button>
-            <Button danger>DELETE</Button>
+            <Button onClick={openDeleteConfirm} danger>
+              DELETE
+            </Button>
           </div>
         </Card>
       </li>
