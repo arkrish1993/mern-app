@@ -1,0 +1,14 @@
+{
+  "name": "project-refresh-nodejs",
+  "version": "1.0.0",
+  "description": "Practice NodeJS and ExpressJS",
+  "main": "practice-express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
